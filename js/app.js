@@ -27,7 +27,7 @@ Enemy.prototype.update = function(dt) {
     if (this.x > this.gridX * 5) {
         this.x = this.startX;
         this.posY = Math.floor(Math.random() * 3) + 1;
-        this.xvelocity = Math.floor(Math.random() * (650 - 200)) + 200; // Math.floor(Math.random() * (max - min)) + min => random integer
+        this.xvelocity = Math.floor(Math.random() * (450 - 100)) + 100; // Math.floor(Math.random() * (max - min)) + min => random integer
                                                                         // between max and min
     }
     this.y = this.gridY * this.posY;
@@ -45,7 +45,7 @@ Enemy.prototype.checkCollision = function() {
     var dx = (this.x - player.x)
     var dy = (this.y - player.y)
     var distance = Math.sqrt(dx * dx + dy * dy)
-    if (distance < 83) {player.posX = 2; player.posY = 5;}
+    if (distance < 83) {player.posX = Math.round(Math.random()) * 4; player.posY = 5;}
     //  radius 1 + radius 2 = diamater 1, if radius 1 = radius 2
     // diameter 1 = sprite width
 }
@@ -70,7 +70,7 @@ Player.prototype.render = function() {
 
 Player.prototype.update = function(dt) {
     this.x = this.gridX * this.posX;
-    if (this.posY === 0) {this.posY = 5;} // set posY before updating graphics to avoid shearing
+    if (this.posY === 0) {this.posY = 5; this.posX = 2} // set posY before updating graphics to avoid shearing
     this.y = this.gridY * this.posY;
     
 };
